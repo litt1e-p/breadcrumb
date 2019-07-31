@@ -1,18 +1,36 @@
-# breadcrumb
+# Breadcrumb
 
-> breadcrumb component for vue
+> breadcrumb directive component for vue
 
-## Build Setup
+# Installation
 
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
+```shell
+npm i @litt1e-p/breadcrumb --save
 ```
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+# Usage
+
+### just add a directive `v-breadcrumb` in the html element after adding router meta with `label` value or router's name by default
+
+Example:
+
+
+1. use with html element attributes
+
+```js
+<div v-breadcrumb="{separator: '>', paths: [{name: 'App', to: '/'}, {name: 'Module'}, {name: 'Index'},]}"></div>
+```
+
+2. use with only one vue directive
+
+```js
+<div v-breadcrumb></div>
+```
+
+# Screenshot
+
+<img src="screenshot.png" width=500>
+
+# License
+
+MIT

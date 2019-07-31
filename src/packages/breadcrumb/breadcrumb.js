@@ -24,8 +24,7 @@ import './index.scss'
 
 const DEFAULT_OPTIONS = {
   separator: '/',
-  paths: [],
-  key: 'name'
+  paths: []
 };
 
 export default class Breadcrumb {

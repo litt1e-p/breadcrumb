@@ -1,11 +1,16 @@
 {
-  "name": "breadcrumb",
-  "description": "breadcrumb component for vue",
-  "version": "0.0.1",
+  "name": "@litt1e-p/breadcrumb",
+  "description": "breadcrumb directive for vue",
+  "version": "0.0.2",
   "author": "litt1e-p4ul@gmail.com",
   "license": "MIT",
   "private": false,
   "main": "dist/breadcrumb.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/litt1e-p/breadcrumb.git"
+  },
+  "homepage": "https://github.com/litt1e-p/breadcrumb",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
