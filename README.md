@@ -10,7 +10,7 @@ npm i @litt1e-p/breadcrumb --save
 
 # Usage
 
-### just add a directive `v-breadcrumb` in the html element after adding router meta with `label` value or router's name by default
+### just add a directive `v-breadcrumb` in the html element after adding router meta with `title` value or router's name by default
 
 Example:
 

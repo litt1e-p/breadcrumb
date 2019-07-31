@@ -124,7 +124,7 @@ export default class Breadcrumb {
     if (options.paths && Array.isArray(options.paths)) {
       opts.paths = options.paths.map(i => {
         let tp = {};
-        tp.name = Breadcrumb._okv(i, i['meta'] && i['meta']['label'] ? 'meta.label' : 'name');
+        tp.name = Breadcrumb._okv(i, i['meta'] && i['meta']['title'] ? 'meta.title' : 'name');
         tp.to = Breadcrumb._okv(i, i.path ? 'path' : 'to');
         return tp;
       })

@@ -13,7 +13,7 @@ const routes = [
     redirect: '/moduleA',
     component: Layout,
     meta: {
-      label: 'Layout'
+      title: 'Layout'
     },
     children: [
       {
@@ -22,7 +22,7 @@ const routes = [
         redirect: '/moduleA/index',
         component: ModuleA,
         meta: {
-          label: 'Module'
+          title: 'Module'
         },
         children: [
           {
@@ -30,7 +30,7 @@ const routes = [
             path: '/moduleA/index',
             component: Index,
             meta: {
-              label: 'Index'
+              title: 'Index'
             }
           }
         ]
