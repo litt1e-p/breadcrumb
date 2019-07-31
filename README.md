@@ -29,7 +29,9 @@ Example:
 
 # Screenshot
 
-<img src="screenshot.png" width=500>
+<img src="https://github.com/litt1e-p/breadcrumb/raw/master/screenshot.png" width=500>
+
+<img src="https://github.com/litt1e-p/breadcrumb/raw/master/screenshot2.png" width=500>
 
 # License
 
