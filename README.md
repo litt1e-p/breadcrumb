@@ -15,16 +15,16 @@ npm i @litt1e-p/breadcrumb --save
 Example:
 
 
-1. use with html element attributes
-
-```js
-<div v-breadcrumb="{separator: '>', paths: [{name: 'App', to: '/'}, {name: 'Module'}, {name: 'Index'},]}"></div>
-```
-
-2. use with only one vue directive
+- use with only one vue directive
 
 ```js
 <div v-breadcrumb></div>
+```
+
+- use with html element attributes
+
+```js
+<div v-breadcrumb="{separator: '>', paths: [{name: 'App', to: '/'}, {name: 'Module'}, {name: 'Index'},]}"></div>
 ```
 
 # Screenshot

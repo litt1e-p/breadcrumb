@@ -24,15 +24,16 @@ import './index.scss'
 
 const DEFAULT_OPTIONS = {
   separator: '/',
-  paths: []
+  paths: [],
+  routable: true
 };
 
 export default class Breadcrumb {
   
-  constructor (el, opts = {}) {
+  constructor (el, opts = {}, userOpts = {}) {
     this._opts = {
       ...Breadcrumb._defaults,
-      ...Breadcrumb.filterOpts(opts)
+      ...Breadcrumb.filterOpts(opts, userOpts)
     };
     this._$el = el;
     this._$tpl = this._createBreadcrumbElement();
@@ -57,6 +58,9 @@ export default class Breadcrumb {
   }
 
   _createBreadcrumbElement () {
+    if (!this.opts || !this.opts.paths) {
+      return null
+    }
     let _$p = document.createElement('div');
     _$p.setAttribute('class', 'breadcrumb');
     this.opts.paths.map(o => {
@@ -106,6 +110,13 @@ export default class Breadcrumb {
     return e instanceof window.Element;
   }
 
+  static _booly(e) {
+    if (e && (typeof e === 'boolean' || ['true', 'false'].includes(e.toLowerCase()))) {
+      return typeof e === 'boolean' ? e : e.toLowerCase() === 'true';
+    }
+    return void 0;
+  }
+
   static _okv(o, k) {
     k = k || 'name';
     return Breadcrumb._nestedV(k.indexOf('.') > -1 ? k : [k], o);
@@ -116,19 +127,26 @@ export default class Breadcrumb {
     return properties.reduce((prev, curr) => prev && prev[curr], obj);
   }
 
-  static filterOpts (options) {
+  static filterOpts (options, userOpts = {}) {
     let opts = {};
     if (options.separator && typeof options.separator === 'string') {
       opts.separator = options.separator;
+    }
+    if (userOpts && userOpts.hasOwnProperty('routable')) {
+      let rb = Breadcrumb._booly(userOpts['routable'])
+      if (rb !== void 0) {
+        opts.routable = rb
+      }
     }
     if (options.paths && Array.isArray(options.paths)) {
       opts.paths = options.paths.map(i => {
         let tp = {};
         tp.name = Breadcrumb._okv(i, i['meta'] && i['meta']['title'] ? 'meta.title' : 'name');
-        tp.to = Breadcrumb._okv(i, i.path ? 'path' : 'to');
+        tp.to = opts.routable && Breadcrumb._okv(i, i.path ? 'path' : 'to');
         return tp;
       })
     }
+    
     return opts;
   }
 

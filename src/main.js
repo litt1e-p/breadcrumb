@@ -3,7 +3,7 @@ import App from './sample/App.vue'
 import Router from './sample/router'
 import Breadcrumb from './index'
 
-Vue.use(Breadcrumb)
+Vue.use(Breadcrumb, {routable: 'true'})
 
 new Vue({
   el: '#app',

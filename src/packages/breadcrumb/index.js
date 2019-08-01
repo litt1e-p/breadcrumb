@@ -22,11 +22,11 @@
 
 import Breadcrumb from './breadcrumb';
 
-Breadcrumb.install = function(Vue) {
+Breadcrumb.install = function(Vue, defaultOpts) {
   Vue.directive('breadcrumb', {
-    params: ['paths', 'separator', 'separatorComponent'],
+    params: ['paths', 'separator'],
     bind: function(el, binding, vnode) {
-      el.breadcrumb = new Breadcrumb(el, binding.value || { paths: vnode.context.$route.matched });
+      el.breadcrumb = new Breadcrumb(el, binding.value || { paths: vnode.context.$route.matched }, defaultOpts);
     },
     unbind (el, binding, vnode, oldVnode) {
       el.breadcrumb.destroy();
