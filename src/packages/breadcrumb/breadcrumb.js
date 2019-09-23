@@ -20,7 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import './index.scss'
+import './index.scss';
 
 const DEFAULT_OPTIONS = {
   separator: '/',
@@ -31,17 +31,29 @@ const DEFAULT_OPTIONS = {
 export default class Breadcrumb {
   
   constructor (el, opts = {}, userOpts = {}) {
-    this._opts = {
-      ...Breadcrumb._defaults,
-      ...Breadcrumb.filterOpts(opts, userOpts)
-    };
     this._$el = el;
+    this._init(opts, userOpts)
     this._$tpl = this._createBreadcrumbElement();
     this._mount();
   }
 
   destroy () {
     this._unmount();
+  }
+
+  _init (opts, userOpts) {
+    this._opts = {
+      ...Breadcrumb._defaults,
+      ...Breadcrumb.filterOpts(opts, userOpts)
+    };
+  }
+
+  update (opts) {
+    if (!opts) {
+      return
+    }
+    this._init(opts.arg)
+    this._replaceMount(this._createBreadcrumbElement())
   }
   
   _mount () {
@@ -51,18 +63,40 @@ export default class Breadcrumb {
     this._$el.insertAdjacentElement('afterbegin', this._$tpl);
   }
 
+  _replaceMount (newTpl) {
+    if (!this._$tpl || !this._$el) {
+      return;
+    }
+    this._$el.replaceChild(newTpl, this._$tpl)
+    this._$tpl = newTpl
+  }
+
   _unmount () {
     if (this._$tpl && this._$tpl.parentNode) {
         this._$tpl.parentNode.removeChild(this._$tpl);
     }
   }
 
-  _createBreadcrumbElement () {
+  _clearMounted () {
+    if (this._$tpl && this._$tpl.innerHTML) {
+      for (const i in this._$tpl.childNodes) {
+        if (this._$tpl.childNodes.hasOwnProperty(i)) {
+          const c = this._$tpl.childNodes[i];
+          this._$tpl.removeChild(c);
+        }
+      }
+    }
+  }
+
+  _createBreadcrumbElement (pnode) {
     if (!this.opts || !this.opts.paths) {
       return null
     }
-    let _$p = document.createElement('div');
-    _$p.setAttribute('class', 'breadcrumb');
+    let _$p;
+    if (!pnode) {
+      _$p = document.createElement('div');
+      _$p.setAttribute('class', 'breadcrumb');
+    }
     this.opts.paths.map(o => {
       const {name, to} = o;
       const element = to ? 'a' : 'span';

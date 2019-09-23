@@ -26,7 +26,17 @@ Breadcrumb.install = function(Vue, defaultOpts) {
   Vue.directive('breadcrumb', {
     params: ['paths', 'separator'],
     bind: function(el, binding, vnode) {
-      el.breadcrumb = new Breadcrumb(el, binding.value || { paths: vnode.context.$route.matched }, defaultOpts);
+      if (el.breadcrumb) {
+        el.breadcrumb.update(binding.value)
+      } else {
+        el.breadcrumb = new Breadcrumb(el, binding.value || { paths: vnode.context.$route.matched }, defaultOpts);
+      }
+    },
+    update (el, binding) {
+      if (!el.breadcrumb || !binding.arg) {
+        return;
+      }
+      el.breadcrumb.update(binding)
     },
     unbind (el, binding, vnode, oldVnode) {
       el.breadcrumb.destroy();
