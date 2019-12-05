@@ -9,11 +9,13 @@
     breadcrumb func 4
     <button @click.stop="change">change breadcrumb</button>
   </div>
+  <button @click.stop="goto">goto Index2</button>
 </div>
     
 </template>
 
 <script>
+
 export default {
   data () {
     return {
@@ -23,6 +25,11 @@ export default {
   methods: {
     change () {
       this.breadcrumb = {paths: [{name: 'App'}, {name: 'Module'}, {name: Math.random().toFixed(3)}]}
+    },
+    goto () {
+      this.$router.push({
+        name: 'index2'
+      })
     }
   }
 }

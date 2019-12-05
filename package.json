@@ -1,7 +1,7 @@
 {
   "name": "@litt1e-p/breadcrumb",
   "description": "breadcrumb directive for vue",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "author": "litt1e-p4ul@gmail.com",
   "license": "MIT",
   "private": false,

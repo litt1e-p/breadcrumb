@@ -27,8 +27,14 @@ Breadcrumb.install = function(Vue, defaultOpts) {
     params: ['paths', 'separator'],
     bind: function(el, binding, vnode) {
       if (el.breadcrumb) {
-        el.breadcrumb.update(binding.value)
+        el.breadcrumb.update(binding.value);
       } else {
+        let unwatch = vnode.context.$watch('$route', function (newVal, oldVal) { 
+          el.breadcrumb.update({arg: { paths: newVal.matched }});
+        });
+        if(!vnode.context['unwatch']) {
+          vnode.context['unwatch'] = unwatch;
+        }
         el.breadcrumb = new Breadcrumb(el, binding.value || { paths: vnode.context.$route.matched }, defaultOpts);
       }
     },
@@ -39,6 +45,7 @@ Breadcrumb.install = function(Vue, defaultOpts) {
       el.breadcrumb.update(binding)
     },
     unbind (el, binding, vnode, oldVnode) {
+      vnode.context.unwatch();
       el.breadcrumb.destroy();
     }
   })

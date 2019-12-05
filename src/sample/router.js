@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Layout from './pages/layout'
 import ModuleA from './pages/moduleA'
 import Index from './pages/index'
+import Index2 from './pages/index2'
 
 Vue.use(Router)
 
@@ -31,6 +32,14 @@ const routes = [
             component: Index,
             meta: {
               title: 'Index'
+            }
+          },
+          {
+            name: 'index2',
+            path: '/moduleA/index2',
+            component: Index2,
+            meta: {
+              title: 'Index2'
             }
           }
         ]
