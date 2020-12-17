@@ -1,17 +1,21 @@
 {
   "name": "@litt1e-p/breadcrumb",
   "description": "breadcrumb directive for vue",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "litt1e-p4ul@gmail.com",
   "license": "MIT",
   "private": false,
-  "main": "dist/breadcrumb.js",
+  "main": "dist/breadcrumb.umd.js",
+  "module": "dist/breadcrumb.esm.js",
+  "unpkg": "dist/breadcrumb.min.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/litt1e-p/breadcrumb.git"
   },
   "homepage": "https://github.com/litt1e-p/breadcrumb",
   "dependencies": {
-    "vue": "^2.6.11"
+    "vue": "^2.6.12",
+    "core-js": "^3.8.1",
+    "regenerator-runtime": "^0.13.7"
   }
 }
