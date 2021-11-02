@@ -1,6 +1,6 @@
 # Breadcrumb
 
-> breadcrumb directive component for vue
+> breadcrumb directive component for vue 2.x
 
 # Installation
 
